@@ -32,7 +32,7 @@ public class Main extends AbstractVerticle {
 
         router.route().handler(BodyHandler.create());
 
-       /* router.get("/api/accounts").handler(this::getAllAccounts); /
+       /* router.get("/api/accounts").handler(this::getAllAccounts); 
         router.get("/api/accounts/:id").handler(this::getAccount);
         router.post("/api/accounts").handler(this::addAccount);
         router.put("/api/accounts/:id").handler(this::updateAccount);
