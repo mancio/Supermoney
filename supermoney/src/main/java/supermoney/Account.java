@@ -1,7 +1,6 @@
 package supermoney;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Account {
