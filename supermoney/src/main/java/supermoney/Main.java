@@ -2,6 +2,11 @@ package supermoney;
 
 
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Launcher;
@@ -13,7 +18,10 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
 public class Main extends AbstractVerticle {
-
+	
+	//store accounts and transfers in a linked hash table for a predictable iteration order 
+	private final Map<Integer, Account> accounts = new LinkedHashMap<>();
+    private final Map<Integer, Transfer> transfers = new LinkedHashMap<>();
 	
 	public static void main(final String[] args) {
         Launcher.executeCommand("run", Main.class.getName());
@@ -38,11 +46,11 @@ public class Main extends AbstractVerticle {
 
         
         // get methods 
-        router.get("/api/accounts/:id"):handler(this::accountById);
-        router.get("/api/accounts/:user"):handler(this::accountByUser);
+        router.get("/api/accounts/:id").handler(this::accountById);
+        router.get("/api/accounts/:user").handler(this::accountByUser);
         
         //post methods
-        router.post("/api/transfers").handler(this::makeTranfer);
+        //router.post("/api/transfers").handler(this::makeTranfer);
         
         //put methods
         //router.put("/api/transfers/:id").handler(this::updateTransfer);
@@ -64,7 +72,7 @@ public class Main extends AbstractVerticle {
 
 
 
-	private void getAccount(RoutingContext routingContext) {
+	private void accountById(RoutingContext routingContext) {
         final String id = routingContext.request().getParam("id");
         if (id == null) {
             routingContext.response().setStatusCode(400).end();
@@ -79,4 +87,15 @@ public class Main extends AbstractVerticle {
                         .end(Json.encodePrettily(account));
             }
         }
-    })
+    }
+	
+	private void accountByUser(RoutingContext routingContext) {
+		
+		
+		
+	}
+	
+	
+	
+	
+}
