@@ -22,7 +22,6 @@ public class Main extends AbstractVerticle {
 	
 	//store accounts and transfers in a linked hash table for a predictable iteration order 
 	private final Map<Integer, Account> accounts = new LinkedHashMap<>();
-    private final Map<Integer, Transfer> transfers = new LinkedHashMap<>();
 	
 	public static void main(final String[] args) {
         Launcher.executeCommand("run", Main.class.getName());
@@ -124,7 +123,7 @@ public class Main extends AbstractVerticle {
 		Account mario = new Account("Mario Rossi", "supermario", new BigDecimal("2000"));
 		accounts.put(mario.getId(), mario);
 		
-		Account roberto = new Account("Roberto Bianchi", "kapusta", new BigDecimal("10000"));
+		Account roberto = new Account("Roberto Bianchi", "kapusta", new BigDecimal("100000"));
 		accounts.put(mario.getId(), roberto);
 		
 	}
