@@ -106,13 +106,20 @@ public class Main extends AbstractVerticle {
 	
 	private void makeTranfer(RoutingContext routingContext) {
 		
+		final BigDecimal zero = new BigDecimal("0");
+		
+		
 		final String id = routingContext.request().getParam("id");
 		final String id2 = routingContext.request().getParam("id2");
 		final String eur = routingContext.request().getParam("eur");
 		
+		final Integer idint = Integer.valueOf(id);
+		final Integer id2int = Integer.valueOf(id2);
+		
+		
 		if(id == null || id2 == null) {
 			routingContext.response().setStatusCode(400).end();
-		} else {
+		} else if (accounts.get(id).getmoney() == ){
 			
 			
 		}
