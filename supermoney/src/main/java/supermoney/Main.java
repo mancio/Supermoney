@@ -25,23 +25,23 @@ public class Main extends AbstractVerticle {
             HttpServerResponse response = routingContext.response();
             response
                     .putHeader("content-type", "text/html")
-                    .end("<h1>MoneyTransfer</h1>");
+                    .end("<h1>Supermoney</h1>");
         });
 
         //router.route("/assets/*").handler(StaticHandler.create("assets"));
 
         router.route().handler(BodyHandler.create());
 
-       /* router.get("/api/accounts").handler(this::getAllAccounts); 
-        router.get("/api/accounts/:id").handler(this::getAccount);
-        router.post("/api/accounts").handler(this::addAccount);
-        router.put("/api/accounts/:id").handler(this::updateAccount);
-        router.delete("/api/accounts/:id").handler(this::deleteAccount);
-
-        router.get("/api/transfers").handler(this::getAllTransfers);
-        router.get("/api/transfers/:id").handler(this::getTransfer);
+        
+        // get methods 
+        router.get("/api/accounts/:id"):handler(this::getById);
+        router.get("/api/accounts/:user"):handler(this::getByUser);
+        
+        //post methods
         router.post("/api/transfers").handler(this::addTransfer);
-        router.put("/api/transfers/:id").handler(this::updateTransfer);*/
+        
+        //put methods
+        router.put("/api/transfers/:id").handler(this::updateTransfer);
 
         vertx
                 .createHttpServer()
