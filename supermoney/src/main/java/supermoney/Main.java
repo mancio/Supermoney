@@ -29,6 +29,9 @@ public class Main extends AbstractVerticle {
 	
 	@Override
     public void start(Future<Void> fut) {
+		
+		//generate some test accounts
+		testdata();
 
 
         Router router = Router.router(vertx);
@@ -91,6 +94,14 @@ public class Main extends AbstractVerticle {
 	
 	private void accountByUser(RoutingContext routingContext) {
 		
+		
+		
+	}
+	
+	
+	private void testdata() {
+		
+		Account mario = new Account("Mario Rossi", "supermario", )
 		
 		
 	}

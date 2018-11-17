@@ -13,6 +13,7 @@ public class Account {
     
     private String user;
 
+    //is more precise than double
     private BigDecimal money;
 
     
