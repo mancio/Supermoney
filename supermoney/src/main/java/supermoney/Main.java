@@ -1,10 +1,14 @@
 package supermoney;
 
+
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Launcher;
 import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
@@ -34,14 +38,14 @@ public class Main extends AbstractVerticle {
 
         
         // get methods 
-        router.get("/api/accounts/:id"):handler(this::getById);
-        router.get("/api/accounts/:user"):handler(this::getByUser);
+        router.get("/api/accounts/:id"):handler(this::accountById);
+        router.get("/api/accounts/:user"):handler(this::accountByUser);
         
         //post methods
-        router.post("/api/transfers").handler(this::addTransfer);
+        router.post("/api/transfers").handler(this::makeTranfer);
         
         //put methods
-        router.put("/api/transfers/:id").handler(this::updateTransfer);
+        //router.put("/api/transfers/:id").handler(this::updateTransfer);
 
         vertx
                 .createHttpServer()
@@ -58,4 +62,21 @@ public class Main extends AbstractVerticle {
                 );
     }
 
-}
+
+
+	private void getAccount(RoutingContext routingContext) {
+        final String id = routingContext.request().getParam("id");
+        if (id == null) {
+            routingContext.response().setStatusCode(400).end();
+        } else {
+            final Integer idAsInteger = Integer.valueOf(id);
+            Account account = accounts.get(idAsInteger);
+            if (account == null) {
+                routingContext.response().setStatusCode(404).end();
+            } else {
+                routingContext.response()
+                        .putHeader("content-type", "application/json; charset=utf-8")
+                        .end(Json.encodePrettily(account));
+            }
+        }
+    })
