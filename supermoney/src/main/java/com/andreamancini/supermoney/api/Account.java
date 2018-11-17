@@ -1,4 +1,4 @@
-package supermoney;
+package com.andreamancini.supermoney.api;
 
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,9 +18,10 @@ public class Account {
 
     
 
-    public Account(String name, BigDecimal money) {
+    public Account(String name, String user, BigDecimal money) {
         this.id = COUNTER.getAndIncrement();
         this.name = name;
+        this.user = user;
         this.money = money;
         
     }

@@ -1,7 +1,8 @@
-package supermoney;
+package com.andreamancini.supermoney.api;
 
 
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -94,15 +95,31 @@ public class Main extends AbstractVerticle {
 	
 	private void accountByUser(RoutingContext routingContext) {
 		
-		
+		final String user = routingContext.request().getParam("user");
+		if (user == null) {
+			routingContext.response().setStatusCode(400).end();
+	    } else {
+	    	final Integer idAsInteger = Integer.valueOf(user);
+	        Account account = accounts.get(idAsInteger);
+	        if (account == null) {
+	        	routingContext.response().setStatusCode(404).end();
+	        } else {
+	        	routingContext.response()
+	            	.putHeader("content-type", "application/json; charset=utf-8")
+	                .end(Json.encodePrettily(account));
+	        }
+	     }
 		
 	}
 	
 	
 	private void testdata() {
 		
-		Account mario = new Account("Mario Rossi", "supermario", )
+		Account mario = new Account("Mario Rossi", "supermario", new BigDecimal("2000"));
+		accounts.put(mario.getId(), mario);
 		
+		Account roberto = new Account("Roberto Bianchi", "kapusta", new BigDecimal("10000"));
+		accounts.put(mario.getId(), roberto);
 		
 	}
 	
