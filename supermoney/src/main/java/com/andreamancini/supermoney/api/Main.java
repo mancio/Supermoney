@@ -50,14 +50,21 @@ public class Main extends AbstractVerticle {
 
         
         // get methods 
+        
+        // get account by id
         router.get("/api/accounts/:id").handler(this::accountById);
-        router.get("/api/accounts/:user").handler(this::accountByUser);
+        
+        // get all accounts
+        router.get("/api/accounts/").handler(this::allAccounts);
+       
         
         //post methods
-        //router.post("/api/transfers").handler(this::makeTranfer);
         
-        //put methods
-        //router.put("/api/transfers/:id").handler(this::updateTransfer);
+        //make a transfer 
+        router.post("/api/transfer/:id/to/:id2/:ammount").handler(this::makeTranfer);
+        
+        // make a new account
+        router.post("/api/accounts").handler(this::makeAccount);
 
         vertx
                 .createHttpServer()
@@ -75,6 +82,11 @@ public class Main extends AbstractVerticle {
     }
 
 
+	private void allAccounts(RoutingContext routingContext) {
+        routingContext.response()
+                .putHeader("content-type", "application/json; charset=utf-8")
+                .end(Json.encodePrettily(accounts.values()));
+    }
 
 	private void accountById(RoutingContext routingContext) {
         final String id = routingContext.request().getParam("id");
@@ -93,24 +105,18 @@ public class Main extends AbstractVerticle {
         }
     }
 	
-	private void accountByUser(RoutingContext routingContext) {
+	private void makeTranfer(RoutingContext routingContext) {
 		
-		final String user = routingContext.request().getParam("user");
-		if (user == null) {
-			routingContext.response().setStatusCode(400).end();
-	    } else {
-	    	final Integer idAsInteger = Integer.valueOf(user);
-	        Account account = accounts.get(idAsInteger);
-	        if (account == null) {
-	        	routingContext.response().setStatusCode(404).end();
-	        } else {
-	        	routingContext.response()
-	            	.putHeader("content-type", "application/json; charset=utf-8")
-	                .end(Json.encodePrettily(account));
-	        }
-	     }
+		
 		
 	}
+	
+	
+	private void makeAccount(RoutingContext routingContext) {
+		
+	}
+		
+	
 	
 	
 	private void testdata() {
