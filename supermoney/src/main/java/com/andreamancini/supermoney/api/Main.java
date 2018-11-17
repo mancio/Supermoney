@@ -60,7 +60,7 @@ public class Main extends AbstractVerticle {
         //post methods
         
         //make a transfer 
-        router.post("/api/transfer/:id/to/:id2/:ammount").handler(this::makeTranfer);
+        router.post("/api/transfer/:id/to/:id2/:eur").handler(this::makeTranfer);
         
         // make a new account
         router.post("/api/accounts").handler(this::makeAccount);
@@ -106,7 +106,16 @@ public class Main extends AbstractVerticle {
 	
 	private void makeTranfer(RoutingContext routingContext) {
 		
+		final String id = routingContext.request().getParam("id");
+		final String id2 = routingContext.request().getParam("id2");
+		final String eur = routingContext.request().getParam("eur");
 		
+		if(id == null || id2 == null) {
+			routingContext.response().setStatusCode(400).end();
+		} else {
+			
+			
+		}
 		
 	}
 	
