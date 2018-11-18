@@ -15,3 +15,25 @@ to enumerate and search easily the accounts.
 
 ## API Usage
 
+### Accounts
+#### Create an account
+The following request creates an account and returns it:
+```
+    POST localhost:8080/api/accounts
+    {
+    	"name": "Mario Rossi",
+    	"user": "supermario",
+    	"money": 1989
+	}
+```
+Response:
+```
+    HTTP 201 Created
+    {	
+    	"id": 1,
+    	"name": "Mario Rossi",
+    	"user": "supermario",
+    	"money": 1989
+	}
+```
+
