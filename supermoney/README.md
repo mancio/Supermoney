@@ -25,7 +25,7 @@ The folowing request retrieves all accounts in the datastore
 Response:
 ```
     HTTP 200 OK
-    [
+	[
     	{
         	"id": 0,
         	"name": "Mario Rossi",
@@ -66,7 +66,7 @@ The following request creates an account and returns it:
     {
     	"name": "Mario Rossi",
     	"user": "supermario",
-    	"money": 2000
+    	"money": "2000"
 	 }
 	 
 ```
