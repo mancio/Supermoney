@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Launcher;
@@ -115,19 +114,37 @@ public class Main extends AbstractVerticle {
 		
 		final Integer idint = Integer.valueOf(id);
 		final Integer id2int = Integer.valueOf(id2);
+		final BigDecimal bigeur = new BigDecimal(eur);
 		
 		
 		if(id == null || id2 == null) {
 			routingContext.response().setStatusCode(400).end();
-		} else if (accounts.get(id).getmoney() == ){
+		} else if (accounts.get(idint).getmoney().compareTo(bigeur) < 0){
 			
+			routingContext.response().setStatusCode(400).end();
 			
+		}else {
+			
+			accounts.get(idint).getmoney().subtract(bigeur);
+			accounts.get(id2int).getmoney().add(bigeur);
 		}
 		
 	}
 	
 	
 	private void makeAccount(RoutingContext routingContext) {
+		
+		try {
+            final Account account = Json.decodeValue(routingContext.getBodyAsString(),
+                    Account.class);
+            accounts.put(account.getId(), account);
+            routingContext.response()
+                    .setStatusCode(201)
+                    .putHeader("content-type", "application/json; charset=utf-8")
+                    .end(Json.encodePrettily(account));
+        } catch (Exception e) {
+            routingContext.response().setStatusCode(400).end();
+        }
 		
 	}
 		
