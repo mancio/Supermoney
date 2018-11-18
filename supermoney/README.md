@@ -10,7 +10,7 @@ The accounts get lost if the app shutdown or crash, but all the internal operati
 are very fast.
 
 This is possible thanks to a linkedHashMap where the accounts are stored.
-The linked hash map has predictable iteration order of the elements in the map give the possibility
+This structure has predictable iteration order of the elements in the map and give the possibility
 to enumerate and search easily the accounts.
 
 ## API Usage
