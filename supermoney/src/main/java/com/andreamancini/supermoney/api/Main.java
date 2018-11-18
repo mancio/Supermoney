@@ -15,7 +15,7 @@ import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
-import io.vertx.ext.web.handler.StaticHandler;
+//import io.vertx.ext.web.handler.StaticHandler;
 
 public class Main extends AbstractVerticle {
 	
@@ -125,8 +125,15 @@ public class Main extends AbstractVerticle {
 			
 		}else {
 			
-			accounts.get(idint).getmoney().subtract(bigeur);
-			accounts.get(id2int).getmoney().add(bigeur);
+			accounts.get(idint).sub(bigeur);
+			accounts.get(id2int).add(bigeur);
+			
+			Account account = accounts.get(idint);
+			
+			routingContext.response()
+            .putHeader("content-type", "application/json; charset=utf-8")
+            .end(Json.encodePrettily(account));
+			
 		}
 		
 	}
@@ -157,7 +164,7 @@ public class Main extends AbstractVerticle {
 		accounts.put(mario.getId(), mario);
 		
 		Account roberto = new Account("Roberto Bianchi", "kapusta", new BigDecimal("100000"));
-		accounts.put(mario.getId(), roberto);
+		accounts.put(roberto.getId(), roberto);
 		
 	}
 	

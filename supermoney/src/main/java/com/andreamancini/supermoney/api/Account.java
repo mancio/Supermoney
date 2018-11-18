@@ -53,6 +53,14 @@ public class Account {
     public void setBalance(BigDecimal money) {
         this.money = money;
     }
+    
+    public void sub(BigDecimal amount) {
+        this.money = money.subtract(amount);
+    }
+
+    public void add(BigDecimal amount) {
+        this.money = money.add(amount);
+    }
 
     
 
