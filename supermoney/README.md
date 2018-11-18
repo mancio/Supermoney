@@ -1,7 +1,7 @@
 # Supermoney
 A RESTful API for money transfers between accounts.
 
-Developed using Java 8 and [Vert.x](http://vertx.io).
+Developed using Java and [Vert.x](http://vertx.io).
 
 ## Data Model and Backing implementation
 
