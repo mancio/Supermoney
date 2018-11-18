@@ -49,12 +49,12 @@ The following request retrieves one account in the datastore
 Response:
 ```
     HTTP 200 OK
-    {
+	{
     	"id": 0,
         "name": "Mario Rossi",
         "user": "supermario",
         "money": 2000
-   	 }
+	}
    	 
    	 
 ```
@@ -63,22 +63,22 @@ Response:
 The following request creates an account and returns it:
 ```
     POST localhost:8080/api/accounts
-    {
+	{
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": "2000"
-	 }
+	}
 	 
 ```
 Response:
 ```
     HTTP 201 Created
-    {	
+	{	
     	"id": 1,
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": 2000
-	 }
+	}
 	 
 ```
 
@@ -86,21 +86,21 @@ Response:
 The following request updates an account and returns it:
 ```
     PUT localhost:8080/api/accounts/0
-    {
+	{
         "name": "Mario Neri",
         "user": "ciccio",
         "money": "300"
-    }
+	}
 ```
 Response:
 ```
     HTTP 200 OK
-    {
+	{
         "id": 0,
         "name": "Mario Neri",
         "user": "ciccio",
         "money": 300
-    }
+	}
 ```
 * do not try to update id (non possible for security reason)
 * remember to write the amount inside ""
@@ -116,12 +116,12 @@ The following request creates a transfer and returns it:
 Response:
 ```
     HTTP 201 Created
-    {	
+	{	
     	"id": 1,
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": 2200
-	 }
+	}
 	
 ```
 where
