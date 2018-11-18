@@ -82,6 +82,30 @@ Response:
 	 
 ```
 
+#### Update an account
+The following request updates an account and returns it:
+```
+    PUT localhost:8080/api/accounts/0
+    {
+        "name": "Mario Neri",
+        "user": "ciccio",
+        "money": "300"
+    }
+```
+Response:
+```
+    HTTP 200 OK
+    {
+        "id": 0,
+        "name": "Mario Neri",
+        "user": "ciccio",
+        "money": 300
+    }
+```
+* do not try to update id (non possible for security reason)
+* remember to write the amount inside ""
+
+
 ### Transfers
 #### Create a transfer
 The following request creates a transfer and returns it:
