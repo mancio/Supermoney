@@ -110,7 +110,7 @@ Response:
 #### Create a transfer
 The following request creates a transfer and returns it:
 ```
-    POST localhost:8080/api/transfers/0/to/1/200
+    POST localhost:8080/api/transfer/0/to/1/200
     
 ```
 Response:
