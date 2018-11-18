@@ -45,6 +45,10 @@ public class Account {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public BigDecimal getmoney() {
         return money;

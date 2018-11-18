@@ -3,8 +3,10 @@ package com.andreamancini.supermoney.api;
 
 
 import java.math.BigDecimal;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 
 import io.vertx.core.AbstractVerticle;
@@ -12,6 +14,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Launcher;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -51,16 +54,24 @@ public class Main extends AbstractVerticle {
         
         // get account by id
         router.get("/api/accounts/:id").handler(this::accountById);
-        
         // get all accounts
         router.get("/api/accounts/").handler(this::allAccounts);
+        
+        //put method
+        
+        //update name and username
+        router.put("/api/accounts/:id").handler(this::updateAccount);
+        
+        //delete method
+        
+        //delete account
+        router.delete("/api/accounts/:id").handler(this::deleteAccount);
        
         
         //post methods
-        
+                
         //make a transfer 
         router.post("/api/transfer/:id/to/:id2/:eur").handler(this::makeTranfer);
-        
         // make a new account
         router.post("/api/accounts").handler(this::makeAccount);
 
@@ -105,7 +116,7 @@ public class Main extends AbstractVerticle {
 	
 	private void makeTranfer(RoutingContext routingContext) {
 		
-		final BigDecimal zero = new BigDecimal("0");
+		
 		
 		
 		final String id = routingContext.request().getParam("id");
@@ -154,6 +165,57 @@ public class Main extends AbstractVerticle {
         }
 		
 	}
+	
+	
+	
+	private void updateAccount(RoutingContext routingContext) {
+        final String id = routingContext.request().getParam("id");
+        JsonObject json = routingContext.getBodyAsJson();
+        if (id == null || json == null) {
+            routingContext.response().setStatusCode(400).end();
+        } else {
+            final Integer idAsInteger = Integer.valueOf(id);
+            Account account = accounts.get(idAsInteger);
+            if (account == null) {
+                routingContext.response().setStatusCode(404).end();
+            } else {
+                boolean updated = false;
+                if (json.getString("name") != null && !json.getString("name").isEmpty()) {
+                    account.setName(json.getString("name"));
+                    updated = true;
+                }
+                if (json.getString("user") != null && !json.getString("user").isEmpty()) {
+                    account.setUser(json.getString("user"));
+                    updated = true;
+                }
+                if (json.getString("money") != null && !json.getString("money").isEmpty() && (new BigDecimal(json.getString("money"))).compareTo(BigDecimal.ZERO) >= 0) {
+                    account.setBalance(new BigDecimal(json.getString("money")));
+                    updated = true;
+                }
+                
+                if (!updated) {
+                    routingContext.response().setStatusCode(400).end();
+                } else {
+                    routingContext.response()
+                            .putHeader("content-type", "application/json; charset=utf-8")
+                            .end(Json.encodePrettily(account));
+                }
+            }
+        }
+    }
+
+    private void deleteAccount(RoutingContext routingContext) {
+        String id = routingContext.request().getParam("id");
+        if (id == null) {
+            routingContext.response().setStatusCode(400).end();
+        } else if (accounts.get(Integer.valueOf(id)) == null) {
+            routingContext.response().setStatusCode(404).end();
+        } else {
+            Integer idAsInteger = Integer.valueOf(id);
+            accounts.remove(idAsInteger);
+            routingContext.response().setStatusCode(204).end();
+        }
+    }
 		
 	
 	
