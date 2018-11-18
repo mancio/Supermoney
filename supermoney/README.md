@@ -137,4 +137,4 @@ where
 
 * 0 = id account sender
 * 1 = id account receiver
-* 200 = 200 euro to transfer
+* 200 = 200 euro to transfer (the API is single currency)
