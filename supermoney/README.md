@@ -105,6 +105,15 @@ Response:
 * do not try to update id (non possible for security reason)
 * remember to write the amount inside ""
 
+#### Delete an account
+The following request deletes an account:
+```
+    DELETE localhost:8080/api/accounts/0
+```
+Response:
+```
+    HTTP 204 No Content
+```
 
 ### Transfers
 #### Create a transfer
