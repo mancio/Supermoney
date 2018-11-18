@@ -39,6 +39,7 @@ Response:
         	"money": 100000
     	}
 	]
+	
 ```
 #### Retrieve one account
 The following request retrieves one account in the datastore
@@ -53,7 +54,9 @@ Response:
         "name": "Mario Rossi",
         "user": "supermario",
         "money": 2000
-   	},
+   	 }
+   	 
+   	 
 ```
 
 #### Create an account
@@ -64,7 +67,8 @@ The following request creates an account and returns it:
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": 2000
-	}
+	 }
+	 
 ```
 Response:
 ```
@@ -74,7 +78,8 @@ Response:
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": 2000
-	}
+	 }
+	 
 ```
 
 ### Transfers
@@ -92,11 +97,11 @@ Response:
     	"name": "Mario Rossi",
     	"user": "supermario",
     	"money": 2200
-	}
+	 }
 	
 ```
 where
 
-	- 0 = id account sender
-	- 1 = id account receiver
-	- 200 = 200 euro to transfer
+* 0 = id account sender
+* 1 = id account receiver
+* 200 = 200 euro to transfer
