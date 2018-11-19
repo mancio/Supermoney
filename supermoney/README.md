@@ -138,3 +138,16 @@ where
 * 0 = id account sender
 * 1 = id account receiver
 * 200 = 200 euro to transfer (the API is single currency)
+
+
+## Troubleshooting
+
+If you see the following message during testing
+
+```
+
+	WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass
+
+```
+
+and no test is performed, please change environment and use java 8
