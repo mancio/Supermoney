@@ -10,12 +10,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class AppTester {
 
-    @BeforeClass
+    // before any other class to connect to the server
+	@BeforeClass
     public static void configureRestAssured() {
         RestAssured.baseURI = "http://localhost"; 
         RestAssured.port = 8080;
     }
 
+	// after all the tests, to reset
     @AfterClass
     public static void unconfigureRestAssured() {
         RestAssured.reset();
