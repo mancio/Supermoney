@@ -10,19 +10,29 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class AppTester {
 
-    // before any other class to connect to the server
+    
+	// before any other class to connect to the server
 	@BeforeClass
     public static void configureRestAssured() {
         RestAssured.baseURI = "http://localhost"; 
         RestAssured.port = 8080;
     }
 
+	
 	// after all the tests, to reset
     @AfterClass
     public static void unconfigureRestAssured() {
         RestAssured.reset();
     }
+    
+    
+    // test if the server is online
+    @Test
+    public void serverTest() {
+    	given().when().get("/api/accounts").then().statusCode(200);
+    }
 
+    /*
     @Test
     public void testRetrieveAllAccounts() {
         final int id = get("/api/accounts").then()
@@ -214,5 +224,7 @@ public class AppTester {
                 .assertThat()
                 .body("status", equalTo("FAILED"));
     }
+    
+    */
 
 }
