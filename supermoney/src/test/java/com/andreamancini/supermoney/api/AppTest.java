@@ -39,7 +39,7 @@ public class AppTest {
 
     
     @Test
-    public void testRetrieveAllAccounts() {
+    public void testRetrieveByMoney() {
         final int id = get("/api/accounts").then()
                 .assertThat()
                 .statusCode(200)
@@ -54,15 +54,18 @@ public class AppTest {
                 
     }
 
+    
     @Test
-    public void testRetrieveOneAccountPass() {
+    public void testRetrieveOneAccount() {
         get("/api/accounts/0").then()
                 .assertThat()
                 .statusCode(200)
                 .body("id", equalTo(0))
-                .body("name", equalTo("John Doe"))
-                .body("currency", equalTo("EUR"));
+                .body("name", equalTo("Mario Rossi"))
+                .body("user", equalTo("supermario"));
     }
+    
+    
 
     @Test
     public void testRetrieveOneAccountFail() {
@@ -71,12 +74,14 @@ public class AppTest {
                 .statusCode(404);
     }
 
+    
     @Test
     public void testAddAccountPass() {
         given().body("{\n" +
-                "    \"name\": \"Kate\",\n" +
-                "    \"balance\": \"50000\",\n" +
-                "    \"currency\": \"GBP\"\n" +
+                "    \"name\": \"Sergio Di Rio\",\n" +
+        		"	 \"user\": \"teddy\",\n" +
+                "    \"money\": \"4000\",\n" +
+                
                 "}")
                 .when()
                 .post("api/accounts")
@@ -84,13 +89,15 @@ public class AppTest {
                 .assertThat()
                 .statusCode(201);
     }
+    
+    /*
 
     @Test
     public void testAddAccountFail() {
         given().body("{\n" +
-                "    \"name\": \"Kate\",\n" +
-                "    \"balance\": \"50000\",\n" +
-                "    \"currency\": \"djskjdsk\"\n" +
+                "    \"name\": \"Chris Fail\",\n" +
+                "    \"money\": \"jhvjhvkv\",\n" +
+                
                 "}")
                 .when()
                 .post("api/accounts")
@@ -102,8 +109,8 @@ public class AppTest {
     @Test
     public void testUpdateAccountPass() {
         given().body("{\n" +
-                "    \"balance\": \"50000\",\n" +
-                "    \"currency\": \"EUR\"\n" +
+                "    \"user\": \"jam\",\n" +
+                "    \"money\": \"7000\",\n" +
                 "}")
                 .when()
                 .put("api/accounts/0")
@@ -116,17 +123,7 @@ public class AppTest {
                 .body("currency", equalTo("EUR"));
     }
 
-    @Test
-    public void testUpdateAccountFail() {
-        given().body("{\n" +
-                "    \"currency\": \"Eskdskdj\"\n" +
-                "}")
-                .when()
-                .put("api/accounts/0")
-                .then()
-                .assertThat()
-                .statusCode(400);
-    }
+    
 
     @Test
     public void testDeleteOneAccountPass() {
@@ -145,92 +142,6 @@ public class AppTest {
                 .statusCode(404);
     }
 
-    @Test
-    public void testRetrieveAllTransfers() {
-        final int id = get("/api/transfers").then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .jsonPath().getInt("find { it.amount==650 }.id");
-        get("/api/transfers/" + id).then()
-                .assertThat()
-                .statusCode(200)
-                .body("id", equalTo(id))
-                .body("sourceAccountId", equalTo(0))
-                .body("destinationAccountId", equalTo(1))
-                .body("amount", equalTo(650))
-                .body("currency", equalTo("EUR"))
-                .body("comment", equalTo("Rent"));
-    }
-
-    @Test
-    public void testRetrieveOneTransferPass() {
-        get("/api/transfers/0").then()
-                .assertThat()
-                .statusCode(200)
-                .body("id", equalTo(0))
-                .body("sourceAccountId", equalTo(0))
-                .body("destinationAccountId", equalTo(1))
-                .body("amount", equalTo(650))
-                .body("currency", equalTo("EUR"))
-                .body("comment", equalTo("Rent"));
-    }
-
-    @Test
-    public void testRetrieveOneTransferFail() {
-        get("/api/transfers/999").then()
-                .assertThat()
-                .statusCode(404);
-    }
-
-    @Test
-    public void testAddTransferPass() {
-        given().body("{\n" +
-                "    \"sourceAccountId\": \"1\",\n" +
-                "    \"destinationAccountId\": \"0\",\n" +
-                "    \"amount\": \"1000\",\n" +
-                "    \"currency\": \"USD\",\n" +
-                "    \"comment\": \"test transfer\"\n" +
-                "}")
-                .when()
-                .post("api/transfers")
-                .then()
-                .assertThat()
-                .statusCode(201);
-    }
-
-    @Test
-    public void testAddTransferFail() {
-        given().body("{\n" +
-                "    \"sourceAccountId\": \"1\",\n" +
-                "    \"destinationAccountId\": \"0\",\n" +
-                "    \"amount\": \"1000\",\n" +
-                "    \"currency\": \"UkfjSD\",\n" +
-                "    \"comment\": \"test transfer\"\n" +
-                "}")
-                .when()
-                .post("api/transfers")
-                .then()
-                .assertThat()
-                .statusCode(400);
-    }
-
-    @Test
-    public void testUpdateTransferPass() {
-        put("api/transfers/0")
-                .then()
-                .assertThat()
-                .body("status", equalTo("EXECUTED"));
-    }
-
-    @Test
-    public void testUpdateTransferFail() {
-        put("api/transfers/1")
-                .then()
-                .assertThat()
-                .body("status", equalTo("FAILED"));
-    }
-    
     */
 
 }
