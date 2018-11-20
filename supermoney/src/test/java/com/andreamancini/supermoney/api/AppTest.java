@@ -14,8 +14,8 @@ public class AppTest {
 	// before any other class to connect to the server
 	@BeforeClass
     public static void configureRestAssured() {
-        //RestAssured.baseURI = "http://localhost"; 
-        //RestAssured.port = 8080;
+        RestAssured.baseURI = "http://localhost"; 
+        RestAssured.port = 8080;
     }
 
 	
@@ -29,7 +29,7 @@ public class AppTest {
     // test if the server is online
     @Test
     public void serverTest() {
-    	given().when().get("http://localhost:8080/api/accounts").then().statusCode(200);
+    	given().when().get("/api/accounts").then().statusCode(200);
     	
     	
     	
@@ -37,20 +37,21 @@ public class AppTest {
     	
     }
 
-    /*
+    
     @Test
     public void testRetrieveAllAccounts() {
         final int id = get("/api/accounts").then()
                 .assertThat()
                 .statusCode(200)
                 .extract()
-                .jsonPath().getInt("find { it.balance==2345 }.id");
+                .jsonPath().getInt("find { it.money==2000 }.id");
         get("/api/accounts/" + id).then()
                 .assertThat()
                 .statusCode(200)
                 .body("id", equalTo(id))
-                .body("name", equalTo("John Doe"))
-                .body("currency", equalTo("EUR"));
+                .body("name", equalTo("Mario Rossi"))
+                .body("user", equalTo("supermario"));
+                
     }
 
     @Test

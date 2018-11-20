@@ -78,12 +78,19 @@
                         </goals>
                         <configuration>
                             <target>
+                                
+                               
+                                
+                                
                                 <exec executable="${java.home}/bin/java"
                                       dir="${project.build.directory}"
                                       spawn="true">
                                     <arg value="-jar"/>
                                     <arg value="${project.artifactId}-${project.version}-fat.jar"/>
                                 </exec>
+                            	
+                            
+                            
                             </target>
                         </configuration>
                     </execution>
@@ -143,7 +150,7 @@
                                 </transformer>
                             </transformers>
                             <artifactSet/>
-                            <outputFile>${project.artifactId}-${project.version}-fat.jar
+                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
                             </outputFile>
                         </configuration>
                     </execution>
