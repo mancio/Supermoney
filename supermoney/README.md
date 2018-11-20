@@ -151,3 +151,16 @@ If you see the following message during testing
 ```
 
 and no test is performed, please change environment and use java 8
+
+
+-DskipTests package
+
+-DforkMode=never test (for debug)
+
+clean verify
+
+-DskipTests pre-integration-test
+
+post-integration-test
+
+pre-integration-test
