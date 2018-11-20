@@ -29,7 +29,8 @@ public class AppTest {
     // test if the server is online
     @Test
     public void serverTest() {
-    	given().when().get("/api/accounts").then().statusCode(200);
+    	given().when().get("http://localhost:8080/api/accounts").then().statusCode(200);
+    	
     }
 
     /*
