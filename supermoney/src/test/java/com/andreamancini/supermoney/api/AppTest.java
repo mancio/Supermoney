@@ -8,7 +8,7 @@ import org.junit.Test;
 import static com.jayway.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 
-public class AppTester {
+public class AppTest {
 
     
 	// before any other class to connect to the server

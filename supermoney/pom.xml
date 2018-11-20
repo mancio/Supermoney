@@ -9,7 +9,9 @@
   <!-- Output to jar format -->
 	<packaging>jar</packaging>
 	
-	
+	<properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+ 	</properties>
 
   <dependencies>
         <dependency>
@@ -99,7 +101,7 @@
                                       dir="${project.build.directory}"
                                       spawn="false">
                                     <arg value="-c"/>
-                                    <arg value="ps ax | grep -i '${project.artifactId}' | awk 'NR==1{print $1}' | xargs kill -SIGTERM"/>
+                                    <arg value="ps ax | grep -i 'supermoney' | awk 'NR==1{print $1}' | xargs kill -SIGTERM"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -177,7 +179,7 @@
                                               spawn="false">
                                             <arg value="process"/>
                                             <arg value="where"/>
-                                            <arg value="CommandLine like '%${project.artifactId}%' and not name='wmic.exe'"/>
+                                            <arg value="CommandLine like '%supermoney%' and not name='wmic.exe'"/>
                                             <arg value="delete"/>
                                         </exec>
                                     </target>
