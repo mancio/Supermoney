@@ -177,7 +177,7 @@
                                               spawn="false">
                                             <arg value="process"/>
                                             <arg value="where"/>
-                                            <arg value="CommandLine like '%supermoney%' and not name='wmic.exe'"/>
+                                            <arg value="CommandLine like '%${project.artifactId}%' and not name='wmic.exe'"/>
                                             <arg value="delete"/>
                                         </exec>
                                     </target>
