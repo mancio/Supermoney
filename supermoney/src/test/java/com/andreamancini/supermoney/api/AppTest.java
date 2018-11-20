@@ -14,8 +14,8 @@ public class AppTest {
 	// before any other class to connect to the server
 	@BeforeClass
     public static void configureRestAssured() {
-        RestAssured.baseURI = "http://localhost"; 
-        RestAssured.port = 8080;
+        //RestAssured.baseURI = "http://localhost"; 
+        //RestAssured.port = 8080;
     }
 
 	
@@ -30,6 +30,10 @@ public class AppTest {
     @Test
     public void serverTest() {
     	given().when().get("http://localhost:8080/api/accounts").then().statusCode(200);
+    	
+    	
+    	
+    	
     	
     }
 
