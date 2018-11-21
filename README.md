@@ -9,7 +9,7 @@ Developed using Java and [Vert.x](http://vertx.io) and tested with [Postman](htt
 * maven
 * Junit
 
-## how to import
+## How to import the project
 
 1. open Eclipse
 2. set JDK 1.8 as compiler 
