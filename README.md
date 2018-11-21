@@ -1,7 +1,20 @@
 # Supermoney
 A RESTful API for money transfers between accounts.
 
-Developed using Java and [Vert.x](http://vertx.io).
+Developed using Java and [Vert.x](http://vertx.io) and tested with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+
+## Requirements
+
+* java 8
+* maven
+* Junit
+
+## how to import
+
+1. open Eclipse
+2. set JDK 1.8 as compiler 
+3. clone repository
+4. import Maven project from Local repository
 
 ## Data Model and Backing implementation
 
