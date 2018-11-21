@@ -152,8 +152,49 @@ If you see the following message during testing
 
 and no test is performed, please change environment and use java 8
 
+## How to test
 
--DskipTests package
+The testing and building procedures are defined in the pom.xml file. 
+
+The project is been compiled using Maven and tested with Junit in Eclipse
+
+### To test the project please follow the procedure:
+
+1. Compile and build the package by using the command
+	
+	-DskipTests package
+	
+2. Execute the fat java file 
+
+	java -jar filename.jar
+	
+3. In eclipse test with Junit	
+
+4. If you try to GET all the accounts after test you should have the following results
+
+```
+    GET localhost:8080/api/accounts
+```
+Response:
+```
+    HTTP 200 OK
+	[
+    	{
+        	"id": 0,
+        	"name": "Mario Rossi",
+        	"user": "supermario",
+        	"money": 2000
+    	},
+    	{
+        	"id": 1,
+        	"name": "Roberto Bianchi",
+        	"user": "kapusta",
+        	"money": 100000
+    	}
+	]
+	
+```
+
 
 -DforkMode=never test (for debug)
 
