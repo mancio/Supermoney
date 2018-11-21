@@ -155,10 +155,10 @@ public class AppTest {
     	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(200);
     }
     
-    
+    // try to transfer a wrong amount from id 1 to id 2 
     @Test
     public void Test92() {
-    	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(400);
+    	given().when().post("/api/transfer/1/to/2/14354363").then().assertThat().statusCode(400);
     }
 
     
