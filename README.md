@@ -151,14 +151,16 @@ The project is been compiled using Maven and tested with Junit in Eclipse
 ### To test the project please follow the procedure:
 
 1. Compile and build the package by using the command
-	
-	-DskipTests package
-	
+```	
+-DskipTests package
+```
+To skip tests (cannot work because the app start the server)
+ 	
 2. Execute the fat java file 
-
-	java -jar filename.jar
-	
-3. In eclipse test with Junit	
+```
+java -jar supermoney-0.0.1-SNAPSHOT-fat.jar
+```	
+3. In eclipse test with Junit Test using version 4	
 
 4. If you try to GET all the accounts after test you should have the following results
 
@@ -184,17 +186,29 @@ Response:
 	]
 	
 ```
+#### Useful Maven commands  
 
-
+```
 -DforkMode=never test (for debug)
+```
+to skip the test when you want to debug the code	
 
+```
 clean verify
+```
+to clean building file, compile and test
 
+```
 -DskipTests pre-integration-test
+```
 
+Skip the test and launch the jar
+
+```
 post-integration-test
+```
+stop the app
 
-pre-integration-test
 
 
 
