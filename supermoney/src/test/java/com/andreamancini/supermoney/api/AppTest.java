@@ -1,16 +1,21 @@
 package com.andreamancini.supermoney.api;
 
 import com.jayway.restassured.RestAssured;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static com.jayway.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppTest {
 
-    
+	
 	// before any other class to connect to the server
 	@BeforeClass
     public static void configureRestAssured() {
@@ -28,7 +33,7 @@ public class AppTest {
     
     // test if the server is online
     @Test
-    public void serverTest() {
+    public void Test1() {
     	given().when().get("/api/accounts").then().statusCode(200);
     	
     	
@@ -37,9 +42,9 @@ public class AppTest {
     	
     }
 
-    
+    // check if Mario has 2000 euro in his account
     @Test
-    public void testRetrieveByMoney() {
+    public void Test2() {
         final int id = get("/api/accounts").then()
                 .assertThat()
                 .statusCode(200)
@@ -54,9 +59,9 @@ public class AppTest {
                 
     }
 
-    
+    // has Mario the id = 0?
     @Test
-    public void testRetrieveOneAccount() {
+    public void Test3() {
         get("/api/accounts/0").then()
                 .assertThat()
                 .statusCode(200)
@@ -80,7 +85,7 @@ public class AppTest {
         given().body("{\n" +
                 "    \"name\": \"Sergio Di Rio\",\n" +
         		"	 \"user\": \"teddy\",\n" +
-                "    \"money\": \"4000\",\n" +
+                "    \"money\": \"4000\"\n" +
                 
                 "}")
                 .when()
@@ -90,13 +95,13 @@ public class AppTest {
                 .statusCode(201);
     }
     
-    /*
+    
 
     @Test
     public void testAddAccountFail() {
         given().body("{\n" +
                 "    \"name\": \"Chris Fail\",\n" +
-                "    \"money\": \"jhvjhvkv\",\n" +
+                "    \"money\": \"jhvjhvkv\"\n" +
                 
                 "}")
                 .when()
@@ -110,7 +115,7 @@ public class AppTest {
     public void testUpdateAccountPass() {
         given().body("{\n" +
                 "    \"user\": \"jam\",\n" +
-                "    \"money\": \"7000\",\n" +
+                "    \"money\": \"7000\"\n" +
                 "}")
                 .when()
                 .put("api/accounts/0")
@@ -118,9 +123,9 @@ public class AppTest {
                 .assertThat()
                 .statusCode(200)
                 .body("id", equalTo(0))
-                .body("name", equalTo("John Doe"))
-                .body("balance", equalTo(50000))
-                .body("currency", equalTo("EUR"));
+                .body("name", equalTo("Mario Rossi"))
+                .body("user", equalTo("jam"))
+                .body("money", equalTo("7000"));
     }
 
     
@@ -142,6 +147,6 @@ public class AppTest {
                 .statusCode(404);
     }
 
-    */
+    
 
 }
