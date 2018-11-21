@@ -152,7 +152,7 @@ public class AppTest {
     // transfer 20 euro from account 1 to account 2
     @Test 
     public void Test91() {
-    	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(201);
+    	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(200);
     }
     
     
