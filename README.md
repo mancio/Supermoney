@@ -102,7 +102,7 @@ Response:
         "money": 300
 	}
 ```
-* do not try to update id (non possible for security reason)
+* do not try to update id (for security reason)
 * remember to write the amount inside ""
 
 #### Delete an account
@@ -140,17 +140,7 @@ where
 * 200 = 200 euro to transfer (the API is single currency)
 
 
-## Troubleshooting
 
-If you see the following message during testing
-
-```
-
-	WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass
-
-```
-
-and no test is performed, please change environment and use java 8
 
 ## How to test
 
@@ -205,3 +195,17 @@ clean verify
 post-integration-test
 
 pre-integration-test
+
+
+
+## Troubleshooting
+
+If you see the following message during testing
+
+```
+
+	WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass
+
+```
+
+and no test is performed, please change environment and use java 8
