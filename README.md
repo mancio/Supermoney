@@ -1,7 +1,24 @@
 # Supermoney
+
 A RESTful API for money transfers between accounts.
 
 Developed using Java and [Vert.x](http://vertx.io) and tested with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+
+## Data Model and Backing implementation
+
+The software is a stand-alone java in-app memory with no database.
+The accounts get lost if the app shutdown or crash, but all the internal operations in the app
+are very fast.
+
+This is possible thanks to a linkedHashMap where the accounts are stored.
+This structure has predictable iteration order of the elements in the map and give the possibility
+to enumerate and search easily the accounts.
+
+## Future development
+
+Implement the backup feature. An in-memory app cannot use an sql database on the disk because would be too slow to store and retrieve data. The main advantage of using HTTP is the possibility of using Caching and save time without performing full requests to access the data but the possibility to lose data is still a big issue.
+Should be possible store the hashmap in a log file or use an asynchronous database to write data without waiting until the operation finish and do not decrease the performance. 
+ 
 
 ## Requirements
 
@@ -15,16 +32,6 @@ Developed using Java and [Vert.x](http://vertx.io) and tested with [Postman](htt
 2. set JDK 1.8 as compiler 
 3. clone repository
 4. import Maven project from Local repository
-
-## Data Model and Backing implementation
-
-The software is a stand-alone java in-app memory with no database.
-The accounts get lost if the app shutdown or crash, but all the internal operations in the app
-are very fast.
-
-This is possible thanks to a linkedHashMap where the accounts are stored.
-This structure has predictable iteration order of the elements in the map and give the possibility
-to enumerate and search easily the accounts.
 
 ## API Usage
 
