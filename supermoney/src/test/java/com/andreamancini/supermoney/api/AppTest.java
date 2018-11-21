@@ -73,7 +73,7 @@ public class AppTest {
     
 
     @Test
-    public void testRetrieveOneAccountFail() {
+    public void Test4() {
         get("/api/accounts/999").then()
                 .assertThat()
                 .statusCode(404);
@@ -81,7 +81,7 @@ public class AppTest {
 
     
     @Test
-    public void testAddAccountPass() {
+    public void Test5() {
         given().body("{\n" +
                 "    \"name\": \"Sergio Di Rio\",\n" +
         		"	 \"user\": \"teddy\",\n" +
@@ -96,9 +96,9 @@ public class AppTest {
     }
     
     
-
+    // try to add an account with wrong money amount 
     @Test
-    public void testAddAccountFail() {
+    public void Test6() {
         given().body("{\n" +
                 "    \"name\": \"Chris Fail\",\n" +
                 "    \"money\": \"jhvjhvkv\"\n" +
@@ -111,8 +111,9 @@ public class AppTest {
                 .statusCode(400);
     }
 
+    //try to update user and amount in one account
     @Test
-    public void testUpdateAccountPass() {
+    public void Test7() {
         given().body("{\n" +
                 "    \"user\": \"jam\",\n" +
                 "    \"money\": \"7000\"\n" +
@@ -125,13 +126,13 @@ public class AppTest {
                 .body("id", equalTo(0))
                 .body("name", equalTo("Mario Rossi"))
                 .body("user", equalTo("jam"))
-                .body("money", equalTo("7000"));
+                .body("money", equalTo(7000));
     }
 
     
-
+    // delete the account id 0 of Mario
     @Test
-    public void testDeleteOneAccountPass() {
+    public void Test8() {
         delete("/api/accounts/0").then()
                 .assertThat()
                 .statusCode(204);
@@ -140,11 +141,24 @@ public class AppTest {
                 .statusCode(404);
     }
 
+    // try to delete an account with a wrong id
     @Test
-    public void testDeleteOneAccountFail() {
+    public void Test9() {
         delete("/api/accounts/999").then()
                 .assertThat()
                 .statusCode(404);
+    }
+    
+    // transfer 20 euro from account 1 to account 2
+    @Test 
+    public void Test91() {
+    	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(201);
+    }
+    
+    
+    @Test
+    public void Test92() {
+    	given().when().post("/api/transfer/1/to/2/20").then().assertThat().statusCode(400);
     }
 
     
