@@ -6,7 +6,7 @@ Developed using Java and [Vert.x](http://vertx.io) and tested with [Postman](htt
 
 ## Data Model and Backing implementation
 
-The software is a stand-alone java in-app memory with no database.
+The software is a stand-alone java in-memory app with no database.
 The accounts get lost if the app shutdown or crash, but all the internal operations in the app
 are very fast.
 
